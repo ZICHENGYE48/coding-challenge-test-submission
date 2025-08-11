@@ -37,7 +37,11 @@ const AddressBook = () => {
                   <div className={$.remove}>
                     <Button
                       variant="secondary"
-                      onClick={() => removeAddress(address.id)}
+                      onClick={() => removeAddress({
+                        id: address.id,
+                        firstName: address.firstName,
+                        lastName: address.lastName
+                      })}
                     >
                       Remove
                     </Button>

@@ -7,16 +7,16 @@ import $ from './Form.module.css';
 interface FormEntry {
   name: string;
   placeholder: string;
-  // TODO: Defined a suitable type for extra props
-  // This type should cover all different of attribute types
-  extraProps: any;
+  extraProps: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+    value: string;
+  };
 }
 
 interface FormProps {
   label: string;
-  loading: boolean;
+  loading?: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: () => void;
+  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   submitText: string;
 }
 

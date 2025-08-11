@@ -11,6 +11,11 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
+export const VARIANT: Record<ButtonVariant, string> = {
+  primary: $.primary,
+  secondary: $.secondary,
+} as const;
+
 const Button: FunctionComponent<ButtonProps> = ({
   children,
   onClick,
@@ -20,14 +25,47 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   return (
     <button
-      // TODO: Add conditional classNames
-      // - Must have a condition to set the '.primary' className
-      // - Must have a condition to set the '.secondary' className
-      // - Display loading spinner per demo video. NOTE: add data-testid="loading-spinner" for spinner element (used for grading)
-      className={$.button}
+      className={`${$.button} ${VARIANT[variant]}`}
       type={type}
       onClick={onClick}
     >
+      {loading && (
+        <span data-testid="loading-spinner">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+          >
+            <circle
+              cx="25"
+              cy="25"
+              r="20"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeDasharray="90 150"
+              strokeDashoffset="0"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 25 25"
+                to="360 25 25"
+                dur="1s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="stroke-dashoffset"
+                values="0; -220"
+                dur="1.5s"
+                repeatCount="indefinite"
+              />
+            </circle>
+          </svg>
+        </span>
+      )}
       {children}
     </button>
   );

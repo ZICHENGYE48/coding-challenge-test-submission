@@ -27,8 +27,8 @@ export default function useAddressBook() {
       updateDatabase();
     },
     /** Remove address by ID from the redux store */
-    removeAddress: (id: string) => {
-      dispatch(removeAddress(id));
+    removeAddress: (address: { id: string; firstName: string; lastName: string }) => {
+      dispatch(removeAddress(address));
       updateDatabase();
     },
     /** Loads saved addresses from the indexedDB */
