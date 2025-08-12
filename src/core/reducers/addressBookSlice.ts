@@ -1,6 +1,7 @@
 import { Address } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import normalizeString from '../../utils/normalizeString'
 
 // Define a type for the slice state
 interface CounterState {
@@ -23,8 +24,8 @@ export const addressBookSlice = createSlice({
       const isDuplicate = state.addresses.some(
         (address) =>
           address.id === newEntry.id &&
-          address.firstName.trim().toLowerCase() === newEntry.firstName.trim().toLowerCase() &&
-          address.lastName.trim().toLowerCase() === newEntry.lastName.trim().toLowerCase()
+          normalizeString(address.firstName) === normalizeString(newEntry.firstName) &&
+          normalizeString(address.lastName) === normalizeString(newEntry.lastName)
       );
 
       if(isDuplicate) return;
@@ -38,8 +39,8 @@ export const addressBookSlice = createSlice({
         (address) =>
           !(
             address.id === id &&
-            address.firstName.trim().toLowerCase() === firstName.trim().toLowerCase() &&
-            address.lastName.trim().toLowerCase() === lastName.trim().toLowerCase()
+            normalizeString(address.firstName) === normalizeString(firstName) &&
+            normalizeString(address.lastName) === normalizeString(lastName)
           )
       );
     },

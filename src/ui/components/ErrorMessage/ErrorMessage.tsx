@@ -8,7 +8,7 @@ interface ErrorMessageprops {
 
 const ErrorMessage:FunctionComponent<ErrorMessageprops>  = ({children}) => {
   return (
-    <div className={$.error}>{children}</div>
+    <p className={$.error}>{children}</p>
   )
 }
 

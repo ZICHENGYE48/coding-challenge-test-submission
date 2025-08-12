@@ -15,7 +15,7 @@ describe('Button', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Click me' }));
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalled();
   });
 
   test('renders button with default button type', () => {

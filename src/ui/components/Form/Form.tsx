@@ -28,7 +28,7 @@ const Form: FunctionComponent<FormProps> = ({
   submitText
 }) => {
   return (
-    <form onSubmit={onFormSubmit}>
+    <form aria-label={label} onSubmit={onFormSubmit}>
       <fieldset>
         <legend>{label}</legend>
         {formEntries.map(({ name, placeholder, extraProps }, index) => (

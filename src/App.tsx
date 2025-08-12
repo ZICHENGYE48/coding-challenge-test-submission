@@ -9,7 +9,7 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage"
 import Form from "@/components/Form/Form";
 import useAddressBook from "@/hooks/useAddressBook";
 import useFormFields from "@/hooks/useFormFields";
-import transformAddress, {RawAddressModel} from './core/models/address'
+import transformAddress, { RawAddressModel } from './core/models/address'
 
 import { Address as AddressType } from "./types";
 

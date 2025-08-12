@@ -40,13 +40,14 @@ describe('Radio', () => {
   });
 
   test('renders children', () => {
+    const children = 'Option'
     render(
       <Radio id="id" name="name" onChange={jest.fn()}>
-        Option
+        {children}
       </Radio>
     );
 
-    expect(screen.getByText('Option')).toBeInTheDocument();
+    expect(screen.getByText(children)).toBeInTheDocument();
   });
 
   test('renders radio with checked when checked is true', () => {

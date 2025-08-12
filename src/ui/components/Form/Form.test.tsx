@@ -1,22 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Form from './Form';
 
 describe('Form', () => {
   test('renders label', () => {
+    const label = "Find an address"
     render(
       <Form
-        label="Find an address"
+        label={label}
         formEntries={[]}
         onFormSubmit={jest.fn()}
         submitText="Submit"
       />
     );
 
-    expect(screen.getByText('Find an address')).toBeInTheDocument();
+    expect(screen.getByText(label)).toBeInTheDocument();
   });
 
   test('renders input fields with placeholders and values', () => {
+    const firstName = 'John';
+    const lastName = 'Doe';
+
     render(
       <Form
         label="Find an address"
@@ -25,7 +28,7 @@ describe('Form', () => {
             name: 'firstName',
             placeholder: 'First name',
             extraProps: {
-              value: 'John',
+              value: firstName,
               onChange: jest.fn(),
             },
           },
@@ -33,7 +36,7 @@ describe('Form', () => {
             name: 'lastName',
             placeholder: 'Last name',
             extraProps: {
-              value: 'Doe',
+              value: lastName,
               onChange: jest.fn(),
             },
           },
@@ -44,13 +47,13 @@ describe('Form', () => {
     );
 
     expect(screen.getByPlaceholderText('First name')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('First name')).toHaveValue('John');
+    expect(screen.getByPlaceholderText('First name')).toHaveValue(firstName);
 
     expect(screen.getByPlaceholderText('Last name')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Last name')).toHaveValue('Doe');
+    expect(screen.getByPlaceholderText('Last name')).toHaveValue(lastName);
   });
 
-  test('calls onFormSubmit when form is submitted', async () => {
+  test('calls onFormSubmit when form is submitted', () => {
     const onFormSubmit = jest.fn()
 
     render(
@@ -62,7 +65,7 @@ describe('Form', () => {
       />
     );
 
-    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    fireEvent.submit(screen.getByRole('form'));
 
     expect(onFormSubmit).toHaveBeenCalled();
   });
