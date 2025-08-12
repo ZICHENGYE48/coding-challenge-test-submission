@@ -4,18 +4,19 @@ import Button, { VARIANT } from './Button';
 
 describe('Button', () => {
   test('renders button with provided children', () => {
-    render(<Button>Click me</Button>);
+    const children = 'Click me'
+    render(<Button>{children}</Button>);
 
-    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: children })).toBeInTheDocument();
   });
 
   test('calls onClick handler when clicked', async () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
+    const onClick = jest.fn();
+    render(<Button onClick={onClick}>Click me</Button>);
 
     await userEvent.click(screen.getByRole('button', { name: 'Click me' }));
 
-    expect(handleClick).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 
   test('renders button with default button type', () => {
