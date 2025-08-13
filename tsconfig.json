@@ -37,6 +37,9 @@
       ],
       "@/styles/*": [
         "styles/*"
+      ],
+      "@/core/*": [
+        "src/core/*"
       ]
     },
     "plugins": [

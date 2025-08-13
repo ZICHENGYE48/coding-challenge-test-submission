@@ -9,7 +9,7 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage"
 import Form from "@/components/Form/Form";
 import useAddressBook from "@/hooks/useAddressBook";
 import useFormFields from "@/hooks/useFormFields";
-import transformAddress, { RawAddressModel } from './core/models/address'
+import transformAddress, { RawAddressModel } from '@/core/models/address'
 
 import { Address as AddressType } from "./types";
 
@@ -150,7 +150,7 @@ function App() {
         </h1>
         <Form
           label="🏠 Find an address"
-          onFormSubmit={(event) => void handleAddressSubmit(event)}
+          onFormSubmit={handleAddressSubmit}
           submitText="Find"
           formEntries={addressFormEntries}
           loading={loading}
@@ -172,7 +172,7 @@ function App() {
         {selectedAddress && (
           <Form
             label="✏️ Add personal info to address"
-            onFormSubmit={(event) => void handlePersonSubmit(event)}
+            onFormSubmit={handlePersonSubmit}
             submitText="Add to addressbook"
             formEntries={personalInfoFormEntries}
           />

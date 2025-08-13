@@ -30,8 +30,13 @@ export default async function handle(
     return /^\d+$/.test(value);
   };
 
-  const validateNumericField = (value: string, fieldName: string, res: NextApiResponse) => {
-    if (!isStrictlyNumeric(value)) {
+  const validateNumericField = (
+    value: string | string[],
+    fieldName: string,
+    res: NextApiResponse
+    ) => {
+    const str = Array.isArray(value) ? value[0] : value;
+    if (!isStrictlyNumeric(str)) {
       res.status(400).send({
         status: "error",
         errormessage: `${fieldName} must be all digits and non negative!`,
@@ -42,8 +47,8 @@ export default async function handle(
   };
 
   if (
-    !validateNumericField(postcode as string, "Postcode", res) ||
-    !validateNumericField(streetnumber as string, "Street Number", res)
+    !validateNumericField(postcode, "Postcode", res) ||
+    !validateNumericField(streetnumber, "Street Number", res)
   ) {
     return;
   }

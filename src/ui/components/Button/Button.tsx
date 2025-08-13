@@ -28,6 +28,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       className={`${$.button} ${VARIANT[variant]}`}
       type={type}
       onClick={onClick}
+      disabled={loading}
     >
       {loading && (
         <span data-testid="loading-spinner">

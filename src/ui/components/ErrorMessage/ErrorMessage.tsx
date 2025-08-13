@@ -2,13 +2,15 @@ import React, { FunctionComponent } from 'react';
 
 import $ from './ErrorMessage.module.css';
 
-interface ErrorMessageprops {
-  children: string
+interface ErrorMessageProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: React.ReactNode
 }
 
-const ErrorMessage:FunctionComponent<ErrorMessageprops>  = ({children}) => {
+const ErrorMessage:FunctionComponent<ErrorMessageProps>  = ({children, ...props}) => {
   return (
-    <p className={$.error}>{children}</p>
+    <p role="alert" aria-live="polite" className={$.error} {...props}>
+      {children}
+    </p>
   )
 }
 

@@ -7,8 +7,12 @@ import $ from './Form.module.css';
 interface FormEntry {
   name: string;
   placeholder: string;
-  extraProps: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+  extraProps: Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'defaultValue' | 'checked' | 'placeholder'
+  > & {
     value: string;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
 }
 
