@@ -1,5 +1,6 @@
 import { ButtonType, ButtonVariant } from "@/types";
 import React, { FunctionComponent } from "react";
+import clsx from 'clsx'
 
 import $ from "./Button.module.css";
 
@@ -25,7 +26,7 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${$.button} ${VARIANT[variant]}`}
+      className={clsx($.button, VARIANT[variant])}
       type={type}
       onClick={onClick}
       disabled={loading}
