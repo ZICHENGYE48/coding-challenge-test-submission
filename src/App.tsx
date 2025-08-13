@@ -5,18 +5,22 @@ import AddressBook from "@/components/AddressBook/AddressBook";
 import Button from "@/components/Button/Button";
 import Radio from "@/components/Radio/Radio";
 import Section from "@/components/Section/Section";
-import ErrorMessage from "@/components/ErrorMessage/ErrorMessage"
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import Form from "@/components/Form/Form";
 import useAddressBook from "@/hooks/useAddressBook";
 import useFormFields from "@/hooks/useFormFields";
-import transformAddress, { RawAddressModel } from '@/core/models/address'
+import transformAddress, { RawAddressModel } from "@/core/models/address";
 
 import { Address as AddressType } from "./types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
 function App() {
-  const { fields, onChange, clearFields: clearFormFields } = useFormFields({
+  const {
+    fields,
+    onChange,
+    clearFields: clearFormFields,
+  } = useFormFields({
     postCode: "",
     houseNumber: "",
     firstName: "",
@@ -24,7 +28,8 @@ function App() {
     selectedAddress: "",
   });
 
-  const { postCode, houseNumber, firstName, lastName, selectedAddress } = fields;
+  const { postCode, houseNumber, firstName, lastName, selectedAddress } =
+    fields;
 
   /**
    * Results states
@@ -37,7 +42,9 @@ function App() {
    */
   const { addAddress } = useAddressBook();
 
-  const handleAddressSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleAddressSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     setAddresses([]);
@@ -56,9 +63,10 @@ function App() {
       }
 
       setAddresses(
-        data.details.map((address: RawAddressModel) => transformAddress(address))
+        data.details.map((address: RawAddressModel) =>
+          transformAddress(address)
+        )
       );
-
     } catch (err) {
       setError("Something went wrong while fetching addresses");
     } finally {
@@ -102,35 +110,35 @@ function App() {
 
   const addressFormEntries = [
     {
-      name: 'postCode',
-      placeholder: 'Post Code',
+      name: "postCode",
+      placeholder: "Post Code",
       extraProps: {
         onChange: onChange,
-        value: postCode
-      }
+        value: postCode,
+      },
     },
     {
-      name: 'houseNumber',
-      placeholder: 'House number',
+      name: "houseNumber",
+      placeholder: "House number",
       extraProps: {
         onChange: onChange,
-        value: houseNumber
-      }
-    }
+        value: houseNumber,
+      },
+    },
   ];
 
   const personalInfoFormEntries = [
     {
-      name: 'firstName',
-      placeholder: 'First name',
+      name: "firstName",
+      placeholder: "First name",
       extraProps: {
         onChange: onChange,
         value: firstName,
       },
     },
     {
-      name: 'lastName',
-      placeholder: 'Last name',
+      name: "lastName",
+      placeholder: "Last name",
       extraProps: {
         onChange: onChange,
         value: lastName,
@@ -183,7 +191,6 @@ function App() {
         <Button variant="secondary" onClick={handleClearAllFields}>
           Clear all fields
         </Button>
-
       </Section>
 
       <Section variant="dark">

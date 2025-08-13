@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
-import $ from './Radio.module.css';
+import $ from "./Radio.module.css";
 
 interface RadioProps {
   id: string;
@@ -10,10 +10,23 @@ interface RadioProps {
   checked?: boolean;
 }
 
-const Radio: FunctionComponent<RadioProps> = ({ children, id, name, onChange, checked }) => {
+const Radio: FunctionComponent<RadioProps> = ({
+  children,
+  id,
+  name,
+  onChange,
+  checked,
+}) => {
   return (
     <div className={$.radio}>
-      <input type="radio" id={id} name={name} onChange={(event) => onChange(event)} value={id} checked={checked}/>
+      <input
+        type="radio"
+        id={id}
+        name={name}
+        onChange={(event) => onChange(event)}
+        value={id}
+        checked={checked}
+      />
       <label htmlFor={id}>{children}</label>
     </div>
   );

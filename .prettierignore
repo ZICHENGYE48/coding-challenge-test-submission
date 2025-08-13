@@ -1,0 +1,35 @@
+# Prettier Ignore
+
+# Dependency directories
+node_modules/
+package-lock.json
+
+# Build output / static files
+.next/
+out/
+build/
+dist/
+public/
+
+# Environment files
+.env*
+.env.local
+.env.development.local
+.env.production.local
+
+# Configuration files
+*.json
+*.yml
+*.yaml
+*.md
+
+# Media assets
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Generated files or logs
+*.log
+*.lock

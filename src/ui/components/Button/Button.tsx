@@ -1,6 +1,6 @@
 import { ButtonType, ButtonVariant } from "@/types";
 import React, { FunctionComponent } from "react";
-import clsx from 'clsx'
+import clsx from "clsx";
 
 import $ from "./Button.module.css";
 

@@ -1,15 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
-import Button from '../Button/Button';
-import InputText from '../InputText/InputText';
-import $ from './Form.module.css';
+import Button from "../Button/Button";
+import InputText from "../InputText/InputText";
+import $ from "./Form.module.css";
 
 interface FormEntry {
   name: string;
   placeholder: string;
   extraProps: Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'value' | 'defaultValue' | 'checked' | 'placeholder'
+    "value" | "defaultValue" | "checked" | "placeholder"
   > & {
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -29,7 +29,7 @@ const Form: FunctionComponent<FormProps> = ({
   loading = false,
   formEntries,
   onFormSubmit,
-  submitText
+  submitText,
 }) => {
   return (
     <form aria-labelledby="form-legend" onSubmit={onFormSubmit}>
@@ -37,11 +37,7 @@ const Form: FunctionComponent<FormProps> = ({
         <legend id="form-legend">{label}</legend>
         {formEntries.map(({ name, placeholder, extraProps }, index) => (
           <div key={`${name}-${index}`} className={$.formRow}>
-            <InputText
-              name={name}
-              placeholder={placeholder}
-              {...extraProps}
-            />
+            <InputText name={name} placeholder={placeholder} {...extraProps} />
           </div>
         ))}
 

@@ -34,7 +34,7 @@ export default async function handle(
     value: string | string[],
     fieldName: string,
     res: NextApiResponse
-    ) => {
+  ) => {
     const str = Array.isArray(value) ? value[0] : value;
     if (!isStrictlyNumeric(str)) {
       res.status(400).send({

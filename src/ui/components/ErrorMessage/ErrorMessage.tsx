@@ -1,17 +1,20 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
-import $ from './ErrorMessage.module.css';
+import $ from "./ErrorMessage.module.css";
 
 interface ErrorMessageProps extends React.HTMLAttributes<HTMLParagraphElement> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const ErrorMessage:FunctionComponent<ErrorMessageProps>  = ({children, ...props}) => {
+const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <p role="alert" aria-live="polite" className={$.error} {...props}>
       {children}
     </p>
-  )
-}
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

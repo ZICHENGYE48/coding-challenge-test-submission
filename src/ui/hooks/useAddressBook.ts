@@ -27,15 +27,18 @@ export default function useAddressBook() {
       updateDatabase();
     },
     /** Remove address by ID from the redux store */
-    removeAddress: (address: { id: string; firstName: string; lastName: string }) => {
+    removeAddress: (address: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }) => {
       dispatch(removeAddress(address));
       updateDatabase();
     },
     /** Loads saved addresses from the indexedDB */
     loadSavedAddresses: async () => {
-      const saved: RawAddressModel[] | null = await databaseService.getItem(
-        "addresses"
-      );
+      const saved: RawAddressModel[] | null =
+        await databaseService.getItem("addresses");
       // No saved item found, exit this function
       if (!saved || !Array.isArray(saved)) {
         setLoading(false);
