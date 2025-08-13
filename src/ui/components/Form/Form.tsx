@@ -20,25 +20,24 @@ interface FormProps {
   label: string;
   loading?: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onFormSubmit: React.FormEventHandler<HTMLFormElement>;
   submitText: string;
 }
 
 const Form: FunctionComponent<FormProps> = ({
   label,
-  loading,
+  loading = false,
   formEntries,
   onFormSubmit,
   submitText
 }) => {
   return (
-    <form aria-label={label} onSubmit={onFormSubmit}>
-      <fieldset>
-        <legend>{label}</legend>
+    <form aria-labelledby="form-legend" onSubmit={onFormSubmit}>
+      <fieldset disabled={loading} aria-busy={loading}>
+        <legend id="form-legend">{label}</legend>
         {formEntries.map(({ name, placeholder, extraProps }, index) => (
           <div key={`${name}-${index}`} className={$.formRow}>
             <InputText
-              key={`${name}-${index}`}
               name={name}
               placeholder={placeholder}
               {...extraProps}

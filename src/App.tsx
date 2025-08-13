@@ -45,7 +45,7 @@ function App() {
     setLoading(true);
 
     try {
-      const url = `${BASE_URL}/api/getAddresses?postcode=${postCode}&streetnumber=${houseNumber}`;
+      const url = `${BASE_URL}/api/getAddresses?postcode=${encodeURIComponent(postCode)}&streetnumber=${encodeURIComponent(houseNumber)}`;
 
       const response = await fetch(url);
       const data = await response.json();
